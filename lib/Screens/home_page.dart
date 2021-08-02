@@ -31,12 +31,37 @@ class HomePage extends StatelessWidget {
                   Container(width: 256, child: SidebarView()),
                   Expanded(
                     child: Container(
+                      padding: const EdgeInsets.all(20),
+                      alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        color: kColorLightActivity,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(kBorderRadiusActivity),
                           bottomLeft: Radius.circular(kBorderRadiusActivity),
                         ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(20),
+                            child: Center(
+                                child: Text(
+                              "Sup",
+                              style: Theme.of(context).textTheme.bodyText1,
+                            )),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(8)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.16),
+                                      offset: Offset(0, 8),
+                                      blurRadius: 20)
+                                ]),
+                          ),
+                        ],
                       ),
                     ),
                   )

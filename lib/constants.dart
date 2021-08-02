@@ -7,29 +7,32 @@ const kColorDarkPrimary = Color(0xFF000000);
 const kColorLightActivity = Color(0xFFF2F3F4);
 const kColorDarkActivity = Color(0xFF222324);
 
-const kColorLightCard = Color(0xFF0088FF);
-const kColorDarkCard = Color(0xFF000000);
+const kColorLightCard = Color(0xFFFFFFFF);
+const kColorDarkCard = Color(0xFF333435);
 
-const kColorLightText = Color(0xFF0088FF);
-const kColorDarkText = Color(0xFF000000);
+const kColorLightText = Color(0xFF000000);
+const kColorDarkText = Color(0xFFFFFFFF);
 
 const kColorLightTextAccent = Color(0xFF0088FF);
-const kColorDarkTextAccent = Color(0xFF000000);
+const kColorDarkTextAccent = Color(0xFF0088FF);
 
 const kBorderRadiusActivity = 8.0;
 
 var kTextThemeLightNormal = TextTheme(
-  headline3: GoogleFonts.pacifico().copyWith(fontSize: 20),
-  bodyText1: GoogleFonts.manrope().copyWith(fontWeight: FontWeight.bold),
+  headline3: GoogleFonts.pacifico(textStyle: TextStyle(fontSize: 20)),
+  bodyText1:
+      GoogleFonts.manrope(textStyle: TextStyle(fontWeight: FontWeight.bold)),
 );
 var kTextThemeDarkNormal = TextTheme(
-  headline3: GoogleFonts.pacifico().copyWith(
+  headline3: GoogleFonts.pacifico(
+      textStyle: TextStyle(
     fontSize: 20,
     color: kColorDarkText,
-  ),
-  bodyText1: GoogleFonts.manrope().copyWith(
+  )),
+  bodyText1: GoogleFonts.manrope(
+      textStyle: TextStyle(
     fontWeight: FontWeight.bold,
-    color: Colors.white,
-  ),
-  bodyText2: GoogleFonts.manrope().copyWith(color: kColorDarkText),
+    color: kColorDarkText,
+  )),
+  bodyText2: GoogleFonts.manrope(textStyle: TextStyle(color: kColorDarkText)),
 );

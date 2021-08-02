@@ -13,10 +13,14 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         scaffoldBackgroundColor: kColorLightPrimary,
+        primaryColor: kColorLightActivity,
+        cardColor: kColorLightCard,
         textTheme: kTextThemeLightNormal,
       ),
       darkTheme: ThemeData(
         scaffoldBackgroundColor: kColorDarkPrimary,
+        primaryColor: kColorDarkActivity,
+        cardColor: kColorDarkCard,
         textTheme: kTextThemeDarkNormal,
       ),
       home: HomePage(),
