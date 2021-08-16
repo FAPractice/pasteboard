@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pasteboard/Screens/home_page.dart';
-import 'package:pasteboard/constants.dart';
+import 'package:pasteboard/Views/home_page.dart';
+import 'constants.dart';
 
 void main() {
   runApp(MyApp());

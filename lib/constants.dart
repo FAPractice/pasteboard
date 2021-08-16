@@ -18,6 +18,11 @@ const kColorDarkTextAccent = Color(0xFF0088FF);
 
 const kBorderRadiusActivity = 8.0;
 
+var kBrandingTextStyle = GoogleFonts.pacifico().copyWith(
+  fontSize: 24,
+  fontWeight: FontWeight.bold,
+);
+
 var kTextThemeLightNormal = TextTheme(
   headline3: GoogleFonts.pacifico(textStyle: TextStyle(fontSize: 20)),
   bodyText1:
