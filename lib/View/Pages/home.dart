@@ -13,15 +13,24 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   var items = <String>[];
 
+  void add() async {
+    var item = await Clipboard.getData('text/plain');
+    if (item != null) {
+      setState(() {
+        items.add(item.text!);
+      });
+    } else {
+      print('No data');
+    }
+  }
+
   @override
   build(context) => CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           middle: const Text('Home'),
           trailing: CupertinoButton(
             child: const Icon(CupertinoIcons.add),
-            onPressed: () => setState(() {
-              items.add("New Item ${items.length + 1}");
-            }),
+            onPressed: add,
           ),
         ),
         child: ListView.builder(

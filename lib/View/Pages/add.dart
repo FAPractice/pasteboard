@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
-class AddPrompt extends StatefulWidget {
-  const AddPrompt({Key? key}) : super(key: key);
+class AddCustomPrompt extends StatefulWidget {
+  const AddCustomPrompt({Key? key}) : super(key: key);
   @override
-  State<AddPrompt> createState() => _AddPromptState();
+  State<AddCustomPrompt> createState() => _AddCustomPromptState();
 }
 
-class _AddPromptState extends State<AddPrompt> {
+class _AddCustomPromptState extends State<AddCustomPrompt> {
   var text = '';
 
   @override
