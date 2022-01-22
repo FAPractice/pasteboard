@@ -1,4 +1,8 @@
 class Item {
   String? text;
-  Item(String this.text);
+  DateTime? added;
+
+  Item({this.text}) {
+    added = DateTime.now();
+  }
 }

@@ -1,30 +1,22 @@
 import 'package:flutter/cupertino.dart';
 
-class AddPage extends StatelessWidget {
-  const AddPage({Key? key}) : super(key: key);
+class AddPrompt extends StatefulWidget {
+  const AddPrompt({Key? key}) : super(key: key);
+  @override
+  State<AddPrompt> createState() => _AddPromptState();
+}
+
+class _AddPromptState extends State<AddPrompt> {
+  var text = '';
 
   @override
-  Widget build(BuildContext context) {
-    return CupertinoAlertDialog(
-      title: const Text('Add'),
-      content: const CupertinoTextField(
-        placeholder: 'Enter text',
-      ),
-      actions: <Widget>[
-        CupertinoDialogAction(
-          child: const Text('Cancel'),
-          onPressed: () {
-            Navigator.pop(context, 'Cancel');
-          },
+  build(BuildContext context) => CupertinoDialogAction(
+        child: const CupertinoTextField(
+          placeholder: "Enter Text",
+          // onChanged: (val) => text = val,
         ),
-        CupertinoDialogAction(
-          child: const Text('Add'),
-          onPressed: () {
-            // TODO: Add Item to ViewModel
-            Navigator.pop(context, 'Add');
-          },
-        ),
-      ],
-    );
-  }
+        onPressed: () {
+          Navigator.pop(context, text);
+        },
+      );
 }
