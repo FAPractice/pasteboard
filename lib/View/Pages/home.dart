@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:pasteboard/View/Components/item_card.dart';
 import 'package:pasteboard/View/Pages/add.dart';
+import 'package:pasteboard/ViewModel/ItemViewModel.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -20,8 +22,22 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+              const Text("Hello 1"),
+            ]),
+          )
         ],
       ),
     );
   }
 }
+
+                  // Provider.of<ItemsViewModel>(context).getItemCards()),
