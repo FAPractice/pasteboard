@@ -1,22 +1,20 @@
 import 'package:flutter/cupertino.dart';
+import 'package:pasteboard/ViewModel/ItemViewModel.dart';
+import 'package:provider/provider.dart';
 
-class AddCustomPrompt extends StatefulWidget {
+class AddCustomPrompt extends StatelessWidget {
   const AddCustomPrompt({Key? key}) : super(key: key);
-  @override
-  State<AddCustomPrompt> createState() => _AddCustomPromptState();
-}
-
-class _AddCustomPromptState extends State<AddCustomPrompt> {
-  var text = '';
 
   @override
   build(BuildContext context) => CupertinoDialogAction(
-        child: const CupertinoTextField(
+        child: CupertinoTextField(
           placeholder: "Enter Text",
-          // onChanged: (val) => text = val,
+          onChanged: (val) =>
+              Provider.of<ItemsViewModel>(context).customAddText = val,
         ),
         onPressed: () {
-          Navigator.pop(context, text);
+          Provider.of<ItemsViewModel>(context).addCustomItem();
+          Navigator.pop(context);
         },
       );
 }

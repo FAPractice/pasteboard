@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:pasteboard/Model/ItemModel.dart';
 import 'package:pasteboard/View/Components/item_card.dart';
+import 'package:pasteboard/ViewModel/ItemViewModel.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,31 +13,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var items = <String>[];
-
-  void add() async {
-    var item = await Clipboard.getData('text/plain');
-    if (item != null) {
-      setState(() {
-        items.add(item.text!);
-      });
-    } else {
-      print('No data');
-    }
-  }
-
   @override
   build(context) => CupertinoPageScaffold(
         navigationBar: CupertinoNavigationBar(
           middle: const Text('Home'),
           trailing: CupertinoButton(
             child: const Icon(CupertinoIcons.add),
-            onPressed: add,
+            onPressed: Provider.of<ItemsViewModel>(context).addItem,
           ),
         ),
         child: ListView.builder(
-          itemCount: items.length,
-          itemBuilder: (ctx, idx) => ThemeListItem(Item(text: items[idx])),
+          itemCount: Provider.of<ItemsViewModel>(context).items.length,
+          itemBuilder: (ctx, idx) =>
+              ThemeListItem(Provider.of<ItemsViewModel>(context).items[idx]),
         ),
       );
 }
