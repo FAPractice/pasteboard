@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/services.dart';
-import 'package:pasteboard/Model/ItemModel.dart';
+import 'package:pasteboard/View/Components/app_bar.dart';
+import 'package:pasteboard/View/Components/button.dart';
 import 'package:pasteboard/View/Components/item_card.dart';
-import 'package:pasteboard/ViewModel/ItemViewModel.dart';
+import 'package:pasteboard/ViewModel/item_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,20 +14,41 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  build(context) => CupertinoPageScaffold(
-        navigationBar: CupertinoNavigationBar(
-          middle: const Text('Home'),
-          trailing: CupertinoButton(
-            child: const Icon(CupertinoIcons.add),
-            onPressed: Provider.of<ItemsViewModel>(context).addItem,
+  build(context) {
+    var contextTheme = CupertinoTheme.of(context);
+    return CupertinoPageScaffold(
+      child: Column(
+        children: [
+          ThemeAppBar(
+            leading: ThemeButton(
+              label: "Edit",
+              icon: CupertinoIcons.pencil,
+              padding: const EdgeInsets.all(16),
+              foregroundColor: contextTheme.primaryContrastingColor,
+              onTap: () {},
+            ),
+            actions: [
+              ThemeButton(
+                icon: CupertinoIcons.add,
+                padding: const EdgeInsets.all(16),
+                foregroundColor: contextTheme.primaryContrastingColor,
+                onTap: Provider.of<ItemsViewModel>(context).addItem,
+              ),
+            ],
+            title: 'Pasteboard',
           ),
-        ),
-        child: ListView.builder(
-          itemCount: Provider.of<ItemsViewModel>(context).items.length,
-          itemBuilder: (ctx, idx) =>
-              ThemeListItem(Provider.of<ItemsViewModel>(context).items[idx]),
-        ),
-      );
+          Expanded(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(6),
+              itemCount: Provider.of<ItemsViewModel>(context).items.length,
+              itemBuilder: (ctx, idx) => ThemeListItem(
+                  Provider.of<ItemsViewModel>(context).items[idx]),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:pasteboard/ViewModel/ItemViewModel.dart';
+import 'package:pasteboard/ViewModel/item_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 class AddCustomPrompt extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:pasteboard/Model/ItemModel.dart';
+import 'package:pasteboard/Model/item_model.dart';
 
 class ItemsViewModel with ChangeNotifier {
-  List<Item> _items = [];
+  final List<Item> _items = [];
 
   List<Item> get items => _items;
 
@@ -17,7 +17,7 @@ class ItemsViewModel with ChangeNotifier {
   }
 
   void addCustomItem() {
-    _items.add(Item(text: _customAddText));
+    _items.insert(0, Item(text: _customAddText));
     notifyListeners();
   }
 
@@ -29,7 +29,7 @@ class ItemsViewModel with ChangeNotifier {
   void addItem() async {
     var item = await Clipboard.getData('text/plain');
     if (item != null) {
-      items.add(Item(text: item.text!));
+      items.insert(0, Item(text: item.text!));
     }
     notifyListeners();
   }

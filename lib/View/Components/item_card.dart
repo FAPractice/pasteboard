@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
-import 'package:pasteboard/Model/ItemModel.dart';
+import 'package:pasteboard/Model/item_model.dart';
 
 class ThemeListItem extends StatefulWidget {
   final Item item;
@@ -19,24 +19,59 @@ class _ThemeListItemState extends State<ThemeListItem> {
   bool showMessage = false;
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Clipboard.setData(ClipboardData(text: widget.item.text));
-        setState(() {
-          showMessage = true;
-        });
-        Timer.periodic(const Duration(seconds: 1), (timer) {
+    var contextTheme = CupertinoTheme.of(context);
+    return Padding(
+      padding: const EdgeInsets.all(6.0),
+      child: GestureDetector(
+        onTap: () {
+          Clipboard.setData(ClipboardData(text: widget.item.text));
           setState(() {
-            showMessage = false;
+            showMessage = true;
           });
-          timer.cancel();
-        });
-      },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        color: showMessage ? CupertinoColors.activeBlue : null,
-        padding: const EdgeInsets.all(12.0),
-        child: Text(showMessage ? "Copied" : widget.item.text ?? ""),
+          Timer.periodic(const Duration(seconds: 1), (timer) {
+            setState(() {
+              showMessage = false;
+            });
+            timer.cancel();
+          });
+        },
+        child: AnimatedContainer(
+          decoration: BoxDecoration(
+            color: contextTheme.primaryContrastingColor,
+            boxShadow: [
+              BoxShadow(
+                  color: CupertinoColors.black.withOpacity(0.24),
+                  offset: const Offset(0, 2),
+                  blurRadius: 10),
+            ],
+            borderRadius: BorderRadius.circular(8),
+          ),
+          clipBehavior: Clip.hardEdge,
+          duration: const Duration(milliseconds: 200),
+          child: Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(widget.item.text ?? ""),
+              ),
+              Visibility(
+                visible: showMessage,
+                child: Positioned.fill(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    alignment: Alignment.centerLeft,
+                    color: contextTheme.primaryColor,
+                    child: Text(
+                      "Copied",
+                      style: contextTheme.textTheme.actionTextStyle.copyWith(
+                          color: contextTheme.primaryContrastingColor),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

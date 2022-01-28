@@ -1,17 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pasteboard/View/Pages/home.dart';
-import 'package:pasteboard/ViewModel/ItemViewModel.dart';
+import 'package:pasteboard/ViewModel/item_viewmodel.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  // runApp(MultiProvider(
-  //   providers: [
-  //     ChangeNotifierProvider(
-  //       create: (_) => ItemsViewModel(),
-  //     )
-  //   ],
-  //   child: const MyApp(),
-  // ));
   runApp(ChangeNotifierProvider(
     create: (_) => ItemsViewModel(),
     child: const MyApp(),
