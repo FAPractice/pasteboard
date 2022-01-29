@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: CupertinoIcons.pencil,
               padding: const EdgeInsets.all(20),
               foregroundColor: contextTheme.primaryContrastingColor,
+              decoration: BoxDecoration(color: contextTheme.primaryColor),
               onTap: () {},
             ),
             actions: [
@@ -32,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: CupertinoIcons.add,
                 padding: const EdgeInsets.all(16),
                 foregroundColor: contextTheme.primaryContrastingColor,
+                decoration: BoxDecoration(color: contextTheme.primaryColor),
                 onTap: Provider.of<ItemsViewModel>(context).addItem,
               ),
             ],
@@ -42,7 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.all(6),
               itemCount: Provider.of<ItemsViewModel>(context).items.length,
               itemBuilder: (ctx, idx) => ThemeListItem(
-                  Provider.of<ItemsViewModel>(context).items[idx]),
+                Provider.of<ItemsViewModel>(context).items[idx],
+              ),
             ),
           ),
         ],
