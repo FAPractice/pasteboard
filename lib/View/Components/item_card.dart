@@ -51,8 +51,11 @@ class _ThemeListItemState extends State<ThemeListItem> {
           child: Stack(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(widget.item.text ?? ""),
+                padding: const EdgeInsets.all(12.0),
+                child: Text(
+                  widget.item.text ?? "",
+                  style: contextTheme.textTheme.textStyle,
+                ),
               ),
               Visibility(
                 visible: showMessage,
@@ -63,7 +66,7 @@ class _ThemeListItemState extends State<ThemeListItem> {
                     color: contextTheme.primaryColor,
                     child: Text(
                       "Copied",
-                      style: contextTheme.textTheme.actionTextStyle.copyWith(
+                      style: contextTheme.textTheme.textStyle.copyWith(
                           color: contextTheme.primaryContrastingColor),
                     ),
                   ),

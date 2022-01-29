@@ -60,8 +60,7 @@ class ThemeAppBar extends StatelessWidget {
             padding: headingPadding,
             child: Text(
               "Pasteboard",
-              style: contextTheme.textTheme.navLargeTitleTextStyle
-                  .copyWith(color: contextTheme.primaryContrastingColor),
+              style: contextTheme.textTheme.navLargeTitleTextStyle,
             ),
           )
         : null;

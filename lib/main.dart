@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:pasteboard/View/Pages/home.dart';
 import 'package:pasteboard/ViewModel/item_viewmodel.dart';
+import 'package:pasteboard/constants.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -13,5 +14,8 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
-  build(context) => const CupertinoApp(home: HomeScreen());
+  build(context) => const CupertinoApp(
+        theme: kAppThemeLight,
+        home: HomeScreen(),
+      );
 }

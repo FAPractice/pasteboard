@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
             leading: ThemeButton(
               label: "Edit",
               icon: CupertinoIcons.pencil,
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(20),
               foregroundColor: contextTheme.primaryContrastingColor,
               onTap: () {},
             ),
