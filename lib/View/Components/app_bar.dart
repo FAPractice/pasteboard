@@ -7,6 +7,7 @@ class ThemeAppBar extends StatelessWidget {
   final Widget? trailing;
   final String? title;
   final double padding;
+  final double margin;
   const ThemeAppBar(
       {Key? key,
       this.decoration,
@@ -14,7 +15,8 @@ class ThemeAppBar extends StatelessWidget {
       this.actions,
       this.trailing,
       this.title,
-      this.padding = 16.0})
+      this.padding = 0,
+      this.margin = 16.0})
       : super(key: key);
 
   @override
@@ -37,51 +39,51 @@ class ThemeAppBar extends StatelessWidget {
           ],
         );
 
-    var topActions = <Widget>[];
-    var headingPadding = EdgeInsets.all(padding);
+    var children = <Widget>[];
+
+    var leadingWidgets = <Widget>[];
 
     if (leading != null) {
-      headingPadding = headingPadding.copyWith(top: 0);
-      topActions.add(leading!);
+      leadingWidgets.add(leading!);
     }
 
     if (actions != null) {
-      headingPadding = headingPadding.copyWith(top: 0);
-      topActions.add(const Spacer());
-      topActions.addAll(actions!);
+      leadingWidgets.add(const Spacer());
+      leadingWidgets.addAll(actions!);
+    }
+
+    if (leading != null || actions != null) {
+      children.add(Row(
+        children: leadingWidgets,
+      ));
+    }
+    if (leading != null || actions != null && title != null) {
+      children.add(SizedBox(height: padding));
+    }
+
+    if (title != null) {
+      children.add(Text(
+        title!,
+        style: contextTheme.textTheme.navLargeTitleTextStyle,
+      ));
+    }
+
+    if (trailing != null && title != null) {
+      children.add(SizedBox(height: padding));
     }
 
     if (trailing != null) {
-      headingPadding = headingPadding.copyWith(bottom: 0);
-    }
-
-    Widget? titleWidget = title != null
-        ? Padding(
-            padding: headingPadding,
-            child: Text(
-              "Pasteboard",
-              style: contextTheme.textTheme.navLargeTitleTextStyle,
-            ),
-          )
-        : null;
-
-    var items = <Widget>[Row(children: topActions)];
-
-    if (titleWidget != null) {
-      items.add(titleWidget);
-    }
-
-    if (trailing != null) {
-      items.add(trailing!);
+      children.add(trailing!);
     }
 
     return Container(
       width: double.infinity,
       decoration: appBarDecoration,
+      padding: EdgeInsets.all(margin),
       child: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: items,
+          children: children,
         ),
         bottom: false,
       ),

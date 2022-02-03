@@ -33,4 +33,27 @@ class ItemsViewModel with ChangeNotifier {
     }
     notifyListeners();
   }
+
+  void remove(item) {
+    items.remove(item);
+    if (items.isEmpty) {
+      editMode = false;
+    }
+    notifyListeners();
+  }
+
+  void removeAtIndex(index) {
+    items.removeAt(index);
+    if (items.isEmpty) {
+      editMode = false;
+    }
+    notifyListeners();
+  }
+
+  bool editMode = false;
+
+  void toggleEditMode() {
+    editMode = !editMode;
+    notifyListeners();
+  }
 }

@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-class ThemeButton extends StatelessWidget {
+class ThemeButton extends StatefulWidget {
   final EdgeInsets? padding;
   final EdgeInsets? margin;
   final BoxDecoration? decoration;
   final Color? foregroundColor;
+  final double? size;
   final IconData? icon;
   final String? label;
   final TextStyle? labelStyle;
@@ -19,6 +20,7 @@ class ThemeButton extends StatelessWidget {
     this.margin,
     this.icon,
     this.label,
+    this.size,
     this.onLongPress,
     required this.onTap,
     this.labelStyle,
@@ -27,41 +29,51 @@ class ThemeButton extends StatelessWidget {
   }
 
   @override
+  State<ThemeButton> createState() => _ThemeButtonState();
+}
+
+class _ThemeButtonState extends State<ThemeButton> {
+  @override
   Widget build(BuildContext context) {
     var children = <Widget>[];
+    var contextTheme = CupertinoTheme.of(context);
 
-    if (icon != null) {
+    if (widget.icon != null) {
       children.add(Icon(
-        icon,
-        color: foregroundColor ?? const Color(0xFF000000),
-        size: 16,
+        widget.icon,
+        color: widget.foregroundColor ?? const Color(0xFF000000),
+        size: widget.size ??
+            contextTheme.textTheme.actionTextStyle.fontSize ??
+            16.0,
       ));
     }
 
-    if (icon != null && label != null) {
+    if (widget.icon != null && widget.label != null) {
       children.add(const SizedBox(width: 4));
     }
 
-    if (label != null) {
+    if (widget.label != null) {
       children.add(Text(
-        label!,
-        style: labelStyle?.copyWith(
-              color: foregroundColor,
+        widget.label!,
+        style: widget.labelStyle?.copyWith(
+              color: widget.foregroundColor,
             ) ??
             TextStyle(
-              color: foregroundColor ?? const Color(0xFF000000),
+              fontSize: widget.size ??
+                  contextTheme.textTheme.actionTextStyle.fontSize,
+              color: widget.foregroundColor ?? const Color(0xFF000000),
             ),
       ));
     }
 
     return Padding(
-      padding: margin ?? const EdgeInsets.all(0),
+      padding: widget.margin ?? const EdgeInsets.all(0),
       child: GestureDetector(
-        onTap: onTap,
-        onLongPress: onLongPress,
+        onTap: widget.onTap,
+        onLongPress: widget.onLongPress,
         child: Container(
-          decoration: decoration,
-          padding: padding ?? const EdgeInsets.all(8),
+          decoration: widget.decoration,
+          padding: widget.padding ?? const EdgeInsets.all(8),
           child: Row(children: children),
         ),
       ),

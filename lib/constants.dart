@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 const kBaseFont = 'Manrope';
-const kBaseFontSize = 16.0;
+const kBaseFontSize = 17.0;
 const kBaseFontWeight = FontWeight.w600;
 
 const kAccentColorLight = Color(0xFF0088FF);
@@ -38,13 +38,13 @@ const kAppThemeLight = CupertinoThemeData(
     navTitleTextStyle: TextStyle(
       fontFamily: kBaseFont,
       fontWeight: kBaseFontWeight,
-      fontSize: kBaseFontSize * 1.5,
+      fontSize: kBaseFontSize * 1,
       color: kAccentForegroundColorLight,
     ),
     navLargeTitleTextStyle: TextStyle(
       fontFamily: kBaseFont,
-      fontWeight: FontWeight.w800,
-      fontSize: kBaseFontSize * 2,
+      fontWeight: FontWeight.w900,
+      fontSize: kBaseFontSize * 1.75,
       color: kAccentForegroundColorLight,
     ),
     navActionTextStyle: TextStyle(

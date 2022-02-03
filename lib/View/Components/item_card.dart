@@ -2,12 +2,17 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:pasteboard/Model/item_model.dart';
+import 'package:pasteboard/View/Components/button.dart';
 
 class ThemeListItem extends StatefulWidget {
   final Item item;
+  final bool editMode;
+  final VoidCallback? onDelete;
 
   const ThemeListItem(
     this.item, {
+    this.editMode = false,
+    this.onDelete,
     Key? key,
   }) : super(key: key);
 
@@ -52,9 +57,27 @@ class _ThemeListItemState extends State<ThemeListItem> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(12.0),
-                child: Text(
-                  widget.item.text ?? "",
-                  style: contextTheme.textTheme.textStyle,
+                child: Row(
+                  children: [
+                    Visibility(
+                      visible: widget.editMode,
+                      child: ThemeButton(
+                        onTap: widget.onDelete ?? () {},
+                        icon: CupertinoIcons.minus,
+                        decoration: const BoxDecoration(
+                          color: CupertinoColors.destructiveRed,
+                          shape: BoxShape.circle,
+                        ),
+                        padding: const EdgeInsets.all(2),
+                        margin: const EdgeInsets.only(right: 8),
+                        foregroundColor: CupertinoColors.white,
+                      ),
+                    ),
+                    Text(
+                      widget.item.text ?? "",
+                      style: contextTheme.textTheme.textStyle,
+                    ),
+                  ],
                 ),
               ),
               Visibility(
