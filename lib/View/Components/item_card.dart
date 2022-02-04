@@ -76,6 +76,7 @@ class _ThemeListItemState extends State<ThemeListItem> {
                     Text(
                       widget.item.text ?? "",
                       style: contextTheme.textTheme.textStyle,
+                      maxLines: 5,
                     ),
                   ],
                 ),

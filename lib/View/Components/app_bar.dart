@@ -8,6 +8,8 @@ class ThemeAppBar extends StatelessWidget {
   final String? title;
   final double padding;
   final double margin;
+  final bool vertical;
+  final double width;
   const ThemeAppBar(
       {Key? key,
       this.decoration,
@@ -16,7 +18,9 @@ class ThemeAppBar extends StatelessWidget {
       this.trailing,
       this.title,
       this.padding = 0,
-      this.margin = 16.0})
+      this.margin = 16.0,
+      this.vertical = false,
+      this.width = 256})
       : super(key: key);
 
   @override
@@ -77,7 +81,7 @@ class ThemeAppBar extends StatelessWidget {
     }
 
     return Container(
-      width: double.infinity,
+      width: vertical ? width : double.infinity,
       decoration: appBarDecoration,
       padding: EdgeInsets.all(margin),
       child: SafeArea(

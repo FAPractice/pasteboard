@@ -56,4 +56,13 @@ class ItemsViewModel with ChangeNotifier {
     editMode = !editMode;
     notifyListeners();
   }
+
+  var desktopLayout = false;
+
+  void toggleDesktopLayout() {
+    desktopLayout = !desktopLayout;
+    notifyListeners();
+  }
+
+  void setDesktopLayout(val) => desktopLayout = val;
 }

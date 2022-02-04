@@ -15,6 +15,8 @@ class HomeScreen extends StatelessWidget {
     var contextProvider = Provider.of<ItemsViewModel>(context);
 
     var appBar = ThemeAppBar(
+      vertical: contextProvider.desktopLayout,
+      decoration: BoxDecoration(color: contextTheme.primaryColor),
       leading: ThemeButton(
         label: contextProvider.editMode ? "Done" : "Edit",
         icon: CupertinoIcons.pencil,
@@ -40,23 +42,55 @@ class HomeScreen extends StatelessWidget {
       padding: 8.0,
     );
 
-    return CupertinoPageScaffold(
-      child: Column(
-        children: [
-          appBar,
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.all(6),
-              itemCount: contextProvider.items.length,
-              itemBuilder: (ctx, idx) => ThemeListItem(
-                contextProvider.items[idx],
-                editMode: contextProvider.editMode,
-                onDelete: () => contextProvider.removeAtIndex(idx),
-              ),
+    var content = Expanded(
+      child: Container(
+        decoration: BoxDecoration(
+          color: contextTheme.scaffoldBackgroundColor,
+          borderRadius: contextProvider.desktopLayout
+              ? const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  bottomLeft: Radius.circular(16),
+                )
+              : const BorderRadius.only(
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
+                ),
+          boxShadow: [
+            BoxShadow(
+              color: CupertinoColors.black.withOpacity(0.24),
+              offset: const Offset(0, 6),
+              blurRadius: 20,
             ),
+          ],
+        ),
+        child: ListView.builder(
+          padding: const EdgeInsets.all(6),
+          itemCount: contextProvider.items.length,
+          itemBuilder: (ctx, idx) => ThemeListItem(
+            contextProvider.items[idx],
+            editMode: contextProvider.editMode,
+            onDelete: () => contextProvider.removeAtIndex(idx),
           ),
-        ],
+        ),
       ),
+    );
+
+    var children = contextProvider.desktopLayout
+        ? Row(children: [appBar, content])
+        : Column(children: [appBar, content]);
+
+    return CupertinoPageScaffold(
+      backgroundColor: contextTheme.primaryColor,
+      child: LayoutBuilder(builder: (context, constraints) {
+        if (constraints.maxWidth > 800 &&
+            contextProvider.desktopLayout == false) {
+          contextProvider.setDesktopLayout(true);
+        } else if (constraints.maxWidth < 800 &&
+            contextProvider.desktopLayout == true) {
+          contextProvider.setDesktopLayout(false);
+        }
+        return children;
+      }),
     );
   }
 }

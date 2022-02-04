@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   build(context) => const CupertinoApp(
+        debugShowCheckedModeBanner: false,
         theme: kAppThemeLight,
         home: HomeScreen(),
       );
