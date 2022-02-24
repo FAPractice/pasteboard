@@ -7,7 +7,7 @@ interface SectionProps {
 
 export const Section: FC<SectionProps> = (props) => {
   return (
-    <div className="grid" style={{ gridTemplateRows: "auto 1fr auto" }}>
+    <div className="grid pb-4" style={{ gridTemplateRows: "auto 1fr auto" }}>
       <p className="text-primary text-sm pb-3">{props.header}</p>
       <div className="shadow-xl rounded-lg">
         <div className="flex flex-col rounded-lg overflow-hidden">

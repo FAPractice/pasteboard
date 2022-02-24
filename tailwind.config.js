@@ -7,6 +7,8 @@ module.exports = {
         secondary: "#626364",
         scaffold: "#f2f3f4",
         object: "#ffffff",
+        theme: "#0044ff",
+        action: "#0066ff",
       },
     },
   },
