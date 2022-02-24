@@ -1,18 +1,29 @@
-import { motion } from "framer-motion";
+import AppBar from "./Components/AppBar";
+import { ListItem } from "./Components/ListItem";
+import { Page } from "./Components/Page";
+import Scaffold from "./Components/Scaffold";
+import { Section } from "./Components/Section";
 
 function App() {
+  let sampleItems: any = {
+    "2020-02-02": ["Sup", "You", "Beautiful", "Bastard"],
+    "2020-02-03": ["Sup", "You", "Beautiful", "Bastard"],
+    "2020-02-04": ["Sup", "You", "Beautiful", "Bastard"],
+  };
+
   return (
-    <div className="w-screen h-screen place-content-center grid bg-blue-600">
-      <motion.h1
-        animate={{ opacity: [0, 1], translateY: [-100, 0] }}
-        transition={{
-          duration: 0.4,
-        }}
-        className="text-9xl font-black text-white"
-      >
-        Hello, World
-      </motion.h1>
-    </div>
+    <Page>
+      <AppBar />
+      <Scaffold toolbar={<p>Sup</p>}>
+        {Object.keys(sampleItems).map((key) => (
+          <Section header={key}>
+            {sampleItems[key].map((item: String) => (
+              <ListItem>{item}</ListItem>
+            ))}
+          </Section>
+        ))}
+      </Scaffold>
+    </Page>
   );
 }
 
