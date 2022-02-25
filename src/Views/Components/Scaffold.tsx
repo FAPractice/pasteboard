@@ -11,6 +11,7 @@ const Scaffold: FC<ScaffoldProps> = (props) => {
       animate={{ translateY: [100, 0], opacity: [0, 1] }}
       transition={{ duration: 0.4 }}
       className="w-full h-full rounded-t-lg grid bg-scaffold overflow-scroll"
+      style={{ gridTemplateRows: "auto 1fr" }}
     >
       {props.toolbar && (
         <div className="relative h-12 rounded-t-lg overflow-hidden">

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import AppBar from "./Views/Components/AppBar";
 import { ListItem } from "./Views/Components/ListItem";
 import { Page } from "./Views/Components/Page";
@@ -14,6 +16,7 @@ function App() {
     "2020-02-03": ["Sup", "You", "Beautiful", "Bastard"],
     "2020-02-04": ["Sup", "You", "Beautiful", "Bastard"],
     "2020-02-05": ["Sup", "You", "Beautiful", "Bastard"],
+    "2020-02-06": ["Sup", "You", "Beautiful", "Bastard"],
   };
 
   let toolbar = (

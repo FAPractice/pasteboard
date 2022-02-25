@@ -1,8 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, MouseEventHandler } from "react";
 
-export const Button: FC = (props) => {
+interface ButtonInterface {
+  onClick?: MouseEventHandler;
+}
+
+export const Button: FC<ButtonInterface> = (props) => {
   return (
-    <div className="hover:bg-object hover:shadow-lg m-3 hover:m-0 hover:p-3 rounded-md transition-all">
+    <div
+      onClick={props.onClick}
+      className="text-action hover:bg-object hover:shadow-lg m-3 hover:m-0 hover:p-3 rounded-md transition-all"
+    >
       {props.children}
     </div>
   );
