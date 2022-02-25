@@ -1,9 +1,12 @@
-import AppBar from "./Components/AppBar";
-import { ListItem } from "./Components/ListItem";
-import { Page } from "./Components/Page";
-import Scaffold from "./Components/Scaffold";
-import { Section } from "./Components/Section";
-import { Toolbar } from "./Components/Toolbar";
+import AppBar from "./Views/Components/AppBar";
+import { ListItem } from "./Views/Components/ListItem";
+import { Page } from "./Views/Components/Page";
+import Scaffold from "./Views/Components/Scaffold";
+import { Section } from "./Views/Components/Section";
+import { Toolbar } from "./Views/Components/Toolbar";
+import { Button } from "./Views/Components/Button";
+
+import { Clipboard } from "react-feather";
 
 function App() {
   let sampleItems: any = {
@@ -14,8 +17,10 @@ function App() {
   };
 
   let toolbar = (
-    <Toolbar heading={<p>Sup</p>}>
-      <button className="text-action">Add from Clipboard</button>
+    <Toolbar title="History">
+      <Button>
+        <Clipboard className="w-4 h-4" />
+      </Button>
     </Toolbar>
   );
 
@@ -23,13 +28,15 @@ function App() {
     <Page>
       <AppBar />
       <Scaffold toolbar={toolbar}>
-        {Object.keys(sampleItems).map((key) => (
-          <Section header={key} footer={`${sampleItems[key].length} Items`}>
-            {sampleItems[key].map((item: String) => (
-              <ListItem>{item}</ListItem>
-            ))}
-          </Section>
-        ))}
+        {Object.keys(sampleItems)
+          .reverse()
+          .map((key) => (
+            <Section header={`${key}`}>
+              {sampleItems[key].map((item: String) => (
+                <ListItem>{item}</ListItem>
+              ))}
+            </Section>
+          ))}
       </Scaffold>
     </Page>
   );

@@ -14,7 +14,7 @@ const Scaffold: FC<ScaffoldProps> = (props) => {
     >
       {props.toolbar && (
         <div className="relative h-12 rounded-t-lg overflow-hidden">
-          <div className="w-full backdrop-blur-lg rounded-t-lg overflow-hidden backdrop-filter p-4 fixed">
+          <div className="w-full backdrop-blur-lg rounded-t-lg overflow-hidden backdrop-filter fixed">
             {props.toolbar}
           </div>
         </div>
