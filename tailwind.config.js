@@ -8,6 +8,7 @@ module.exports = {
         scaffold: "#f2f3f4",
         object: "#ffffff",
         theme: "#0044ff",
+        "theme-foreground": "#ffffff",
         action: "#ffaa00",
       },
     },

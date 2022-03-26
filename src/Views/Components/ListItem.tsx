@@ -6,7 +6,10 @@ interface ListItemProps {
 
 export const ListItem: FC<ListItemProps> = (props) => {
   return (
-    <div className={"bg-object p-3"} style={{ marginBottom: "1px" }}>
+    <div
+      className={"bg-object p-3 hover:bg-theme hover:text-theme-foreground"}
+      style={{ marginBottom: "1px" }}
+    >
       {props.children}
     </div>
   );

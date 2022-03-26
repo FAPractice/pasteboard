@@ -14,8 +14,8 @@ const Scaffold: FC<ScaffoldProps> = (props) => {
       style={{ gridTemplateRows: "auto 1fr" }}
     >
       {props.toolbar && (
-        <div className="relative h-12 rounded-t-lg overflow-hidden">
-          <div className="w-full backdrop-blur-lg rounded-t-lg overflow-hidden backdrop-filter fixed">
+        <div className="relative h-12 rounded-t-lg overflow-hidden ">
+          <div className="w-full backdrop-blur-lg rounded-t-lg overflow-hidden backdrop-filter fixed bg-scaffold bg-opacity-60">
             {props.toolbar}
           </div>
         </div>
